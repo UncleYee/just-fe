@@ -84,8 +84,3 @@ UI Rendering 的时机：
 
 ## 3.node event loop 与浏览器有什么区别？
 > 一句话总结其中：浏览器环境下，microtask的任务队列是每个macrotask执行完之后执行。而在Node.js中，microtask会在事件循环的各个阶段之间执行，也就是一个阶段执行完毕，就会去执行microtask队列的任务。
-
-## 4.移动端 300ms 的问题
-* 为了兼容屏幕双击缩放的问题。延迟 300ms 以响应双击。
-* 解决：fastclick
-* 原理：检测到 touchEnd 事件，立刻模拟一个 click，并把浏览器 300ms 后的 click 阻止执行
