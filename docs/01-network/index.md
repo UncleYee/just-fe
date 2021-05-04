@@ -63,7 +63,7 @@
 1.通用首部（请求和响应都可以有）
 
 * Cache-Control  控制缓存 
-* Transfor-Encoding 报文主体的传输编码格式
+* Transfer-Encoding 报文主体的传输编码格式
 * Connection 连接管理、逐条首部
 * Date 创建报文的日期
 
