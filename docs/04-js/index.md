@@ -1,6 +1,7 @@
 # JS 基础
 
 ## 0. JS 的运行机制
+
 * JS 是单线程的，同一时间只能做一件事
 * 代码执行的时候，会创建执行上下文，代码都是在执行上下文中运行的。
 * 不同的函数会被压到执行栈中等待主线程执行，保证顺序
@@ -9,6 +10,7 @@
 * JS 事件循环，基于任务队列，宏任务、微任务，只有一个微任务队列，但是可以有 N个宏任务队列
 
 ## 0.5 执行上下文
+
 执行上下文：执行上下文是评估和执行 JavaScript 代码的环境的抽象概念。每当 Javascript 代码在运行的时候，它都是在执行上下文中运行。
 
 执行上下文的创建阶段，会分别生成变量对象，建立作用域链，确定this指向。
@@ -20,6 +22,7 @@
 * Eval 函数执行上下文 — 执行在 eval 函数内部的代码也会有它属于自己的执行上下文，但由于 JavaScript 开发者并不经常使用 eval，所以在这里我不会讨论它。
 
 ## 1. 闭包
+
 > 一个可以访问外部作用域中变量的内部函数，就是闭包。
 
 * 闭包只存储外部变量的引用，而不会拷贝这部分的值。
@@ -29,12 +32,14 @@
 * 作用域链（Scope Chain）：每一个作用域都有对其父作用域的引用。
 
 ## 2. 基础类型
+
 * 原始类型 String,Number,Boolean,undefined,null,symbol,
 * 复杂类型 Object,Function(最新的标准增加了 Function)
 * 原始类型都是存在栈中，会被频繁调用，占据固定空间大小
 * 复杂类型存储在栈和堆中，在栈中存放指针，在堆中存放数据
 
 ## 3. 原型链
+
 * 每个构造函数都有 prototype 属性，指向原型对象
 * 原型对象有 constructor 指向构造函数
 * 由构造函数创建出来的实例，有 \__proto__ 属性指向原型对象
@@ -48,45 +53,55 @@
 > 类是构造函数的语法糖
 
 ## 4. this 的指向
+
 * 调用时才能确定 this 指向，谁调用指向谁
 * 改变 this 的几种方式：call,apply,bind
 * 箭头函数的 this
 
 ## 5. 深拷贝、浅拷贝
+
 * 深拷贝：JSON.parse(JSON.stringfy({})), _.cloneDeep({})
 * 浅拷贝：{...}, Object.assign()
 
 ## 6. 事件冒泡和事件代理
 
 ### 6.1 事件冒泡
+
 浏览器事件的执行需要经过三个阶段，捕获阶段-目标元素阶段-冒泡阶段。
+
 * 捕获：从外层到内层 window -> document -> html -> body -> 目标元素
 * 冒泡：从内层到外层
 
 ### 6.2 addEventListener 的第三个参数
+
 * element.addEventListener(event, function, useCapture)
 * 第三个参数解释：事件是否在捕获或冒泡阶段执行。true: 捕获阶段即执行；false: 冒泡阶段再执行。
 
 ### 6.3 事件代理
+
 > 如果要对一个列表下面的各个子元素增加事件监听，则会增加过多的事件监听。
 > 因此可以将事件绑定在父节点上，在冒泡的时候就可以监听到。
 > 再根据 target 找到实际被点击的元素，就可以达到预期的效果。
 
 ### 6.4 阻止冒泡
+
 * 给子级加 event.stopPropagation() - 只阻止冒泡，不阻止本身的事件
 * 在事件处理函数中返回 false - 阻止冒泡，同时也阻止事件本身(默认事件)
 * event.target==event.currentTarget，让触发事件的元素等于绑定事件的元素，也可以阻止事件冒泡；
 
 ### 6.5 阻止默认事件
+
 * event.prevevtDefault()
 * 监听的回调函数返回 false
 
 ## 7. Object.defineProperty
+
 ```js
 Object.defineProperty(object, key, descriptor) // configurable，enumable, writable 默认都是 false
 ```
 
 ## 8. new String('a')；String('a')；'a'
+
 ```js
 const str = 'a' // 字符串 -- 原始资料类型，储存于栈中，向包装对象借属性和方法
 const str1 = String('a') // 字符串 -- 原始资料类型，储存于栈中，向包装对象借属性和方法
@@ -97,31 +112,37 @@ str1 === str2 // fase
 ```
 
 ## 9. JSON.stringfy & JSON.parse
+
 ```js
 JSON.stringfy(object, replacer, space) // 对象，(函数: (key, value): any  | 数组 ['a, b, c']），缩进空格
 JSON.parse(string[, receiver]) // 转换器, 如果传入该参数(函数)，可以用来修改解析生成的原始值，调用时机在 parse 函数返回之前。
 ```
 
 ## 10. 暂时性死区
+
 带有`let`关键字（和`const`）的变量被提升，但是与`var`不同，它不会被***初始化***。 在我们声明（初始化）它们之前，无法访问它们。 这称为“暂时性死区”。 当我们尝试在声明变量之前访问变量时，JavaScript会抛出`ReferenceError: Cannot access 'name' before initialization`。
 
 ## 11.内置对象
+
 * 全局变量：NaN, undefined
 * 全局函数：parseInt(), parseFloat()
 * 全局对象：Math, Date, Object, RegExp,
 
 ## 12.获取原型的方法
+
 * obj.__proto__
 * obj.constructor.prototype
 * Object.getPrototypeOf(obj)
 
 ## 13.内存泄露
+
 * 未使用的全局变量
 * 未清除的定时器
 * 闭包 私有变量
 * 脱离 DOM 的引用：如绑定在 DOM 上的引用，但是 DOM 被删除了
 
 ## 14.arguments 对象
+
 * 函数中传递的参数值的集合
 * 有 length 属性
 * 不是数组
@@ -129,13 +150,16 @@ JSON.parse(string[, receiver]) // 转换器, 如果传入该参数(函数)，可
 * 箭头函数没有 arguments 对象
 
 ## 15.函数式编程
+
 * （通常缩写为FP）是通过编写纯函数，避免共享状态、可变数据、副作用 来构建软件的过程。
 * 函数式编程是声明式 的而不是命令式 的，应用程序的状态是通过纯函数流动的
 
 ## 16.高阶函数
+
 > 以函数为入参或者返回值为函数的函数
 
 ## 17.为什么函数是一等公民
+
 > 在JavaScript中，函数不仅拥有一切传统函数的使用方式（声明和调用），而且可以做到像简单值一样:
 
 * 赋值（var func = function(){}）、
@@ -149,6 +173,7 @@ JSON.parse(string[, receiver]) // 转换器, 如果传入该参数(函数)，可
 ### 基础语法
 
 ### 练习
+
 ```js
 // ab-cd-ef -> abCdEf 
 function camelcase(str) {
@@ -157,36 +182,38 @@ function camelcase(str) {
 ```
 
 ## 19.Promise
-* Pormise 构造函数是同步执行的，then方法是异步执行的
 
+* Pormise 构造函数是同步执行的，then方法是异步执行的
 
 # ES 新概念
 
 ## 1.Map
+
 * Map: 类似于对象，但是它的 key 可以是对象。普通对象 key 必须是字符串。
 * 方法：get、set、delete、has、clear、size
 * WeakMap: key必须是对象。(null 除外)
 
 ## 2.Set
+
 * Set: 类似于数组，但是 Set内不允许有重复的元素。（可以用于数组去重）。
 * 方法：add、delete、has、clear、size
 * WeakSet: 元素必须为对象。
 
 ## 3.Proxy 代理
 
-- **get(target, propKey, receiver)**：拦截对象属性的读取，比如`proxy.foo`和`proxy['foo']`。
-- **set(target, propKey, value, receiver)**：拦截对象属性的设置，比如`proxy.foo = v`或`proxy['foo'] = v`，返回一个布尔值。
-- **has(target, propKey)**：拦截`propKey in proxy`的操作，返回一个布尔值。
-- **deleteProperty(target, propKey)**：拦截`delete proxy[propKey]`的操作，返回一个布尔值。
-- **ownKeys(target)**：拦截`Object.getOwnPropertyNames(proxy)`、`Object.getOwnPropertySymbols(proxy)`、`Object.keys(proxy)`、`for...in`循环，返回一个数组。该方法返回目标对象所有自身的属性的属性名，而`Object.keys()`的返回结果仅包括目标对象自身的可遍历属性。
-- **getOwnPropertyDescriptor(target, propKey)**：拦截`Object.getOwnPropertyDescriptor(proxy, propKey)`，返回属性的描述对象。
-- **defineProperty(target, propKey, propDesc)**：拦截`Object.defineProperty(proxy, propKey, propDesc）`、`Object.defineProperties(proxy, propDescs)`，返回一个布尔值。
-- **preventExtensions(target)**：拦截`Object.preventExtensions(proxy)`，返回一个布尔值。
-- **getPrototypeOf(target)**：拦截`Object.getPrototypeOf(proxy)`，返回一个对象。
-- **isExtensible(target)**：拦截`Object.isExtensible(proxy)`，返回一个布尔值。
-- **setPrototypeOf(target, proto)**：拦截`Object.setPrototypeOf(proxy, proto)`，返回一个布尔值。如果目标对象是函数，那么还有两种额外操作可以拦截。
-- **apply(target, object, args)**：拦截 Proxy 实例作为函数调用的操作，比如`proxy(...args)`、`proxy.call(object, ...args)`、`proxy.apply(...)`。
-- **construct(target, args)**：拦截 Proxy 实例作为构造函数调用的操作，比如`new proxy(...args)`。
+* **get(target, propKey, receiver)**：拦截对象属性的读取，比如`proxy.foo`和`proxy['foo']`。
+* **set(target, propKey, value, receiver)**：拦截对象属性的设置，比如`proxy.foo = v`或`proxy['foo'] = v`，返回一个布尔值。
+* **has(target, propKey)**：拦截`propKey in proxy`的操作，返回一个布尔值。
+* **deleteProperty(target, propKey)**：拦截`delete proxy[propKey]`的操作，返回一个布尔值。
+* **ownKeys(target)**：拦截`Object.getOwnPropertyNames(proxy)`、`Object.getOwnPropertySymbols(proxy)`、`Object.keys(proxy)`、`for...in`循环，返回一个数组。该方法返回目标对象所有自身的属性的属性名，而`Object.keys()`的返回结果仅包括目标对象自身的可遍历属性。
+* **getOwnPropertyDescriptor(target, propKey)**：拦截`Object.getOwnPropertyDescriptor(proxy, propKey)`，返回属性的描述对象。
+* **defineProperty(target, propKey, propDesc)**：拦截`Object.defineProperty(proxy, propKey, propDesc）`、`Object.defineProperties(proxy, propDescs)`，返回一个布尔值。
+* **preventExtensions(target)**：拦截`Object.preventExtensions(proxy)`，返回一个布尔值。
+* **getPrototypeOf(target)**：拦截`Object.getPrototypeOf(proxy)`，返回一个对象。
+* **isExtensible(target)**：拦截`Object.isExtensible(proxy)`，返回一个布尔值。
+* **setPrototypeOf(target, proto)**：拦截`Object.setPrototypeOf(proxy, proto)`，返回一个布尔值。如果目标对象是函数，那么还有两种额外操作可以拦截。
+* **apply(target, object, args)**：拦截 Proxy 实例作为函数调用的操作，比如`proxy(...args)`、`proxy.call(object, ...args)`、`proxy.apply(...)`。
+* **construct(target, args)**：拦截 Proxy 实例作为构造函数调用的操作，比如`new proxy(...args)`。
 
 ```js
 // 代理示例
@@ -223,6 +250,7 @@ const obj = {
 > 迭代器的遍历方法是首先获得一个迭代器的指针，初始时该指针指向第一条数据之前，接着通过调用 next 方法，改变指针的指向，让其指向下一条数据
 
 每一次的 next 都会返回一个对象，该对象有两个属性
+
 * value 代表想要获取的数据
 * done 布尔值，false表示当前指针指向的数据有值，true表示遍历已经结束
 * Iterator 的作用有三个：
@@ -237,8 +265,8 @@ const obj = {
 * 第二次调用指针对象的next方法，指针就指向数据结构的第二个成员。
 * 不断调用指针对象的next方法，直到它指向数据结构的结束位置。
 
-
 ## 5.Generator
+
 > Generator函数可以说是Iterator接口的具体实现方式。Generator 最大的特点就是可以控制函数的执行。
 > Generator是一个迭代器生成函数，其返回值是一个迭代器（Iterator），可用于异步调用。
 
@@ -256,4 +284,3 @@ async function* range(start, end) {
   }
 })();
 ```
-
