@@ -41,5 +41,8 @@
 - [x] 05-ts
 - [x] 06-算法
 - [x] 07-webpack
+- [x] 08-babel
 
 持续更新中...
+
+字节内推：[传送门](https://job.toutiao.com/s/eU6nWH4)
