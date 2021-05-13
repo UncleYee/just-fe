@@ -16,3 +16,7 @@
 持续更新中...
 
 字节内推：[传送门](https://job.toutiao.com/s/eU6nWH4)
+
+公众号：「皮蛋菌丶」
+
+<img src="https://raw.githubusercontent.com/UncleYee/just-fe/main/img/wechat.png" width="50%">
