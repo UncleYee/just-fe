@@ -1,16 +1,18 @@
 ## 算法篇
 
 ### Hash表 ？
+
 * hash 表结构
 * hash 函数类型
 * 解决冲突的办法
 
-
 ## 0. 时间复杂度、空间复杂度
+
 * 时间复杂度：花费时间的大小：O(1) O(n) O(n2)  O(nLogn) O(n3)
 * 空间复杂度：占用空间的大小：O(1) O(n) O(n2)
 
 ## 1. 递归实现 fill -- 递归
+
 ```js
 function fill(n, m) {
   n--;
@@ -25,6 +27,7 @@ console.log(fill(3, 4))    // [4,4,4]
 ```
 
 ## 2. 大数相加
+
 ```js
 function bigAdd(a, b) {
   const stringA = a.toString()
@@ -65,6 +68,7 @@ function bigAdd(a, b) {
 ```
 
 ## 3.爬楼梯（递归 or 动态规划） -- 递归
+
 ```js
 // 爬楼梯 递归
 function getWays(n) {
@@ -94,6 +98,7 @@ function getWays(n) {
 ```
 
 ## 4. 反转单链表
+
 ```js
 function reverse(head) {
   if (!head || !head.next) return head
@@ -112,6 +117,7 @@ function reverse(head) {
 ```
 
 ## 5. 判断回文数
+
 ```js
 function judge(num) {
   const strA = num.toString()
@@ -120,7 +126,8 @@ function judge(num) {
 }
 ```
 
-## 6.判断是否对称二叉树 
+## 6.判断是否对称二叉树
+
 ```js
 // 1 -- 递归
 function isSymmetric(root) {
@@ -158,6 +165,7 @@ function isSymmetric(root) {
 ```
 
 ## 7.二叉树的层次遍历
+
 ```js
 function test(root) {
   if (root === null) return
@@ -180,6 +188,7 @@ function test(root) {
 ```
 
 ## 8.二叉树的查找和为n的路径
+
 ```js
 // 思路，找到所有的路径，存下来，计算路径的值是否等于指定的值，so easy
 function find(root, sum) {
@@ -218,6 +227,7 @@ function find2(root, sum, path = []) {
 ```
 
 ## 9.36进制加法
+
 ```js
 const chartSet = ['0', '1', '2', ...., 'x', 'y', 'z']
 function add(string1, string2) {
@@ -227,6 +237,7 @@ function add(string1, string2) {
 ```
 
 ## 10.大数相乘
+
 ```js
 ```
 
@@ -271,6 +282,7 @@ var isStraight = function(nums) {
 ```
 
 ## 12. 请用算法实现，从给定的无序、不重复的数组data中，取出n个数，使其相加和为sum。并给出算法的时间/空间复杂度 。(不需要找到所有的解，找到一个解即可) -- 递归
+
 ```js
 function getResult(data, n, sum) {
   if (n === 0 && sum === 0) {
@@ -288,7 +300,7 @@ function getResult(data, n, sum) {
 }
 ```
 
-## 13. 组合 从 1...n 中,选出 k 个数两两组合 
+## 13. 组合 从 1...n 中,选出 k 个数两两组合
 
 ```js
 // combine(4, 2) -> [[1,2], [1,3], [1,4], [2, 3], [2, 4], [3,4]]
