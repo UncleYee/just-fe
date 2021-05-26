@@ -11,7 +11,6 @@
 * 7.完成输出：根据配置的路径和文件名，把输出资源内容写到文件中。
 
 > 简化：参数解析，找到入口文件，调用 Loader 编译文件，遍历 AST 收集依赖，生成 Chunk，输出文件
-
 > 在上面的过程中，webpack 会在特定的时间点广播特定的事件，插件会在监听到广播后执行特定的逻辑，插件也可以根据 webpack 提供的 api 来改变 webpack 的执行结果。
 
 ## 2.webpack 性能优化 - （打包体积和打包速度）
@@ -55,8 +54,6 @@
 // 或者 sideEffects: ['./xxxx.js']，指明副作用文件
 ```
 
-
-
 ## 3. webpack loader
 
 ### 3.1 常见的 loader
@@ -87,7 +84,7 @@ webpack 只能直接处理 JavaScript 代码，任何非 js 代码都必须先�
 * 不同优先级：pre > normal > inline > post
 * 相同优先级：从右向左，从下到上
 
-### 3.5 loader 是一个导出一个函数的 node 模块。
+### 3.5 loader 是一个导出一个函数的 node 模块
 
 ```js
 module.exports = function loader (source) {
@@ -122,10 +119,12 @@ module.exports = function loader (source) {
 ## 7. Loader和Plugin的不同？
 
 不同的作用：
+
 * Loader直译为"加载器"。Webpack将一切文件视为模块，但是webpack原生是只能解析js文件，如果想将其他文件也打包的话，就会用到loader。 所以Loader的作用是让webpack拥有了加载和解析_非JavaScript文件_的能力。
 * Plugin直译为"插件"。Plugin可以扩展webpack的功能，让webpack具有更多的灵活性。 在 Webpack 运行的生命周期中会广播出许多事件，Plugin 可以监听这些事件，在合适的时机通过 Webpack 提供的 API 改变输出结果。
 
 不同的用法：
+
 * Loader在module.rules中配置，也就是说他作为模块的解析规则而存在。 类型为数组，每一项都是一个Object，里面描述了对于什么类型的文件（test），使用什么加载(loader)和使用的参数（options）
 * Plugin在plugins中单独配置。类型为数组，每一项是一个plugin的实例，参数都通过构造函数传入。
 
