@@ -89,3 +89,17 @@ class Scheduler {
 }
 
 ```
+
+5. `delete` 操作结果是什么?
+
+```js
+const name = "Lydia";
+age = 21;
+
+console.log(delete name);
+console.log(delete age);
+
+// 答案：false true
+// 解析：delete 操作符返回一个布尔值： true指删除成功，否则返回false，但是通过 var, const 或 let 关键字声明的变量无法用 delete 操作符来删除。
+// name变量由const关键字声明，所以删除不成功: 返回 false. 而我们设定age等于21时,我们实际上添加了一个名为age的属性给全局对象。对象中的属性是可以删除的，全局对象也是如此，所以delete age返回true.
+```
