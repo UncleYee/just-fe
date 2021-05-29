@@ -103,3 +103,14 @@ console.log(delete age);
 // 解析：delete 操作符返回一个布尔值： true指删除成功，否则返回false，但是通过 var, const 或 let 关键字声明的变量无法用 delete 操作符来删除。
 // name变量由const关键字声明，所以删除不成功: 返回 false. 而我们设定age等于21时,我们实际上添加了一个名为age的属性给全局对象。对象中的属性是可以删除的，全局对象也是如此，所以delete age返回true.
 ```
+
+6. `String` 与 `new String`
+
+```js
+const str = 'a' // 字符串 -- 原始资料类型，储存于栈中，向包装对象借属性和方法
+const str1 = String('a') // 字符串 -- 原始资料类型，储存于栈中，向包装对象借属性和方法
+const str2 = new String('a') // 对象 -- 包装对象，栈中存放堆指针，堆中存放内容
+str === str1 // true
+str === str2 // false
+str1 === str2 // fase
+```
