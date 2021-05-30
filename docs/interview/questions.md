@@ -114,3 +114,12 @@ str === str1 // true
 str === str2 // false
 str1 === str2 // fase
 ```
+
+7. 类型转换问题
+
+```js
+if ([] == false) {console.log(1);};  // true 1  [].toString() -> '' -> 0 -> false
+if ({} == false ) {console.log(2);}; // false
+if ([]) {console.log(3);}; // true 3
+if ([1] == [1]) {console.log(4);}; // false
+```
