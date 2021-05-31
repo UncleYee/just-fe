@@ -123,3 +123,21 @@ if ({} == false ) {console.log(2);}; // false
 if ([]) {console.log(3);}; // true 3
 if ([1] == [1]) {console.log(4);}; // false
 ```
+
+8. JSON.stringfy 第二参数
+
+```js
+const settings = {
+  username: "lydiahallie",
+  level: 19,
+  health: 90
+};
+
+const data = JSON.stringify(settings, ["level", "health"]);
+console.log(data); // {"level":19, "health":90}
+// 解析：JSON.stringify的第二个参数是 替代者(replacer). 替代者(replacer)可以是个函数或数组，用以控制哪些值如何被转换为字符串。
+
+// 如果替代者(replacer)是个 数组 ，那么就只有包含在数组中的属性将会被转化为字符串。在本例中，只有名为"level" 和 "health" 的属性被包括进来， "username"则被排除在外。 data 就等于 "{"level":19, "health":90}".
+
+// 而如果替代者(replacer)是个 函数，这个函数将被对象的每个属性都调用一遍。 函数返回的值会成为这个属性的值，最终体现在转化后的JSON字符串中（译者注：Chrome下，经过实验，如果所有属性均返回同一个值的时候有异常，会直接将返回值作为结果输出而不会输出JSON字符串），而如果返回值为undefined，则该属性会被排除在外。
+```
