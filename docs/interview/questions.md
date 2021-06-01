@@ -141,3 +141,21 @@ console.log(data); // {"level":19, "health":90}
 
 // 而如果替代者(replacer)是个 函数，这个函数将被对象的每个属性都调用一遍。 函数返回的值会成为这个属性的值，最终体现在转化后的JSON字符串中（译者注：Chrome下，经过实验，如果所有属性均返回同一个值的时候有异常，会直接将返回值作为结果输出而不会输出JSON字符串），而如果返回值为undefined，则该属性会被排除在外。
 ```
+
+9. 类型转换
+
+```js
+const name = "Lydia Hallie";
+const age = 21;
+
+console.log(Number.isNaN(name));
+console.log(Number.isNaN(age));
+
+console.log(isNaN(name));
+console.log(isNaN(age));
+
+// 答案：false false true false
+// 解析：通过方法 Number.isNaN，你可以检测你传递的值是否为 数字值 并且是否等价于 NaN。name 不是一个数字值，因此 Number.isNaN(name) 返回 false。age 是一个数字值，但它不等价于 NaN，因此 Number.isNaN(age) 返回 false.
+
+// 通过方法 isNaN， 你可以检测你传递的值是否一个 number。name 不是一个 number，因此 isNaN(name) 返回 true. age 是一个 number 因此 isNaN(age) 返回 false.
+```
